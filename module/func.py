@@ -94,39 +94,29 @@ def sendQuickreply(event):  #快速選單
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤！'))
 def sendButton(event):  #按鈕樣版
     try:
-        {
-  type= template,
-  altText= this is a carousel template,
-  template= {
-    type= carousel,
-    actions= [],
-    columns= [
-      {
-        thumbnailImageUrl= https://i.imgur.com/8RCYqKq.png,
-        title= mystyle,
-        text= self,
-        actions= [
-          {
-            type= message,
-            label= 文字訊息,
-            text= @我自己
-          },
-          {
-            type= uri,
-            label= 連結網頁,
-            uri= https=//web.mcu.edu.tw/
-          },
-          {
-            type= postback,
-            label= 回傳訊息,
-            text= @購買,
-            data= action=buy
-          }
-        ]
-      }
-    ]
-  }
-}
+        message = TemplateSendMessage(
+            alt_text='按鈕樣板',
+            template=ButtonsTemplate(
+                thumbnail_image_url='https://i.imgur.com/8RCYqKq.png',  #顯示的圖片
+                title='mystyle',  #主標題
+                text='self：',  #副標題
+                actions=[
+                    MessageTemplateAction(  #顯示文字計息
+                        label='文字訊息',
+                        text='@我自己'
+                    ),
+                    URITemplateAction(  #開啟網頁
+                        label='連結網頁',
+                        uri='https://web.mcu.edu.tw/'
+                    ),
+                    PostbackTemplateAction(  #執行Postback功能,觸發Postback事件
+                        label='回傳訊息',  #按鈕文字
+                        #text='@購買',  #顯示文字計息
+                        data='action=buy'  #Postback資料
+                    ),
+                ]
+            )
+        )
 
         line_bot_api.reply_message(event.reply_token, message)
     except:
