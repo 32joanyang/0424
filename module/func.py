@@ -102,7 +102,7 @@ def sendButton(event):  #按鈕樣版
     actions= [],
     columns= [
       {
-        thumbnailImageUrl= https=//i.imgur.com/8RCYqKq.png,
+        thumbnailImageUrl= https://i.imgur.com/8RCYqKq.png,
         title= mystyle,
         text= self,
         actions= [
